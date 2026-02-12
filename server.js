@@ -1,36 +1,39 @@
-
 const express = require('express');
 const path = require('path');
 const app = express();
 
 /**
  * Configuration Google Cloud Run :
- * Utilise la variable d'environnement PORT (8080 par défaut).
+ * L'application DOIT écouter sur le port défini par la variable d'environnement PORT.
  */
 const PORT = process.env.PORT || 8080;
 
 /**
  * VÉRIFICATION SANTÉ (Health Check)
- * Utilisé par Cloud Run pour vérifier que le conteneur est prêt.
+ * Indispensable pour que Cloud Run considère le conteneur comme opérationnel.
  */
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok' });
 });
 
-// Serveur les fichiers statiques du répertoire racine
+/**
+ * Service des fichiers statiques
+ * L'application est servie de manière autonome depuis le conteneur.
+ */
 app.use(express.static(__dirname));
 
 /**
- * Gestion du SPA : 
- * Redirige toutes les autres requêtes vers index.html.
+ * Gestion du Single Page Application (SPA)
+ * Toutes les routes non-API sont redirigées vers l'index.html.
  */
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 /**
- * Bind sur 0.0.0.0 pour être accessible depuis l'extérieur du conteneur.
+ * Démarrage du serveur
+ * Important : on bind sur '0.0.0.0' pour Cloud Run.
  */
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Le serveur de la Distillerie Pastis 12/12 écoute sur le port ${PORT}`);
+  console.log(`Serveur Pastis 12/12 opérationnel sur le port ${PORT}`);
 });
