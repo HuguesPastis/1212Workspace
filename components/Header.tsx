@@ -21,8 +21,8 @@ const Header: React.FC<HeaderProps> = ({ user, onLogout }) => {
             >
               12
             </div>
-            <h1 className="text-2xl font-serif tracking-tight" style={{ color: COLORS.gold }}>
-              Pastis <span className="text-white">12/12</span>
+            <h1 className="text-2xl font-serif tracking-tight">
+              <span style={{ color: COLORS.gold }}>Pastis</span> <span className="text-white">12/12</span>
             </h1>
           </div>
 

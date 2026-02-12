@@ -17,8 +17,8 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
     >
       <div className="bg-white p-8 md:p-12 rounded-3xl shadow-2xl max-w-md w-full text-center border-4 border-opacity-20" style={{ borderColor: COLORS.gold }}>
         <div className="mb-6">
-          <h1 className="text-5xl md:text-6xl font-serif mb-2 tracking-tighter" style={{ color: COLORS.header }}>
-            Pastis <span style={{ color: COLORS.accent }}>12/12</span>
+          <h1 className="text-5xl md:text-6xl font-serif mb-2 tracking-tighter">
+            <span style={{ color: COLORS.gold }}>Pastis</span> <span style={{ color: COLORS.header }}>12/12</span>
           </h1>
           <div className="h-1 w-20 bg-amber-400 mx-auto rounded-full"></div>
         </div>
