@@ -1,21 +1,17 @@
+
 {
-  "name": "pastis-12/12---partage-de-fichiers",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "pastis-1212-file-sharing",
+  "version": "1.0.0",
+  "description": "Plateforme professionnelle de partage de fichiers pour Pastis 12/12",
+  "main": "server.js",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "start": "node server.js",
+    "build": "echo 'Build complete (Serving static ESM)'"
   },
   "dependencies": {
-    "react-dom": "^19.2.4",
-    "react": "^19.2.4"
+    "express": "^4.18.2"
   },
-  "devDependencies": {
-    "@types/node": "^22.14.0",
-    "@vitejs/plugin-react": "^5.0.0",
-    "typescript": "~5.8.2",
-    "vite": "^6.2.0"
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
