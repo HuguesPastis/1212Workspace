@@ -1,0 +1,30 @@
+steps:
+  # 1. Construction de l'image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/pastis-1212', '.']
+
+  # 2. Envoi de l'image vers le registre
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/pastis-1212']
+
+  # 3. Déploiement sur Cloud Run
+  # Nous forçons un déploiement sans volumes pour écraser toute configuration erronée précédente.
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'pastis-1212'
+      - '--image'
+      - 'gcr.io/$PROJECT_ID/pastis-1212'
+      - '--region'
+      - 'europe-west1'
+      - '--platform'
+      - 'managed'
+      - '--allow-unauthenticated'
+      - '--port'
+      - '8080'
+      - '--clear-volumes' # Supprime explicitement tout volume configuré précédemment
+
+images:
+  - 'gcr.io/$PROJECT_ID/pastis-1212'
